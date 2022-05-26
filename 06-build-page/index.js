@@ -118,16 +118,16 @@ fs.promises
 
 async function getSizeFiles(folder = '') {
   const data = await fs.promises.readdir(
-    path.join(__dirname, `assets\\${folder}`)
+    path.join(__dirname, `assets/${folder}`)
   );
   data.forEach((el) => {
-    fs.stat(path.join(__dirname, `assets\\${folder}`, el), (err, stats) => {
+    fs.stat(path.join(__dirname, `assets/${folder}`, el), (err, stats) => {
       if (err) console.log(err);
       if (stats.isFile()) {
         //copy files
         fs.copyFile(
-          path.join(__dirname, `assets\\${folder}`, el),
-          path.join(__dirname, `project-dist/assets\\${folder}`, el),
+          path.join(__dirname, `assets/${folder}`, el),
+          path.join(__dirname, `project-dist/assets/${folder}`, el),
           (err) => {
             if (err) console.log(err);
           }
@@ -135,7 +135,7 @@ async function getSizeFiles(folder = '') {
       } else {
         // create 'el' directory
         fs.promises
-          .mkdir(path.join(__dirname, `project-dist/assets\\${el}`), {
+          .mkdir(path.join(__dirname, `project-dist/assets/${el}`), {
             recursive: true,
           })
           .then(function () {})
